@@ -1,0 +1,145 @@
+header {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    background: var(--color-bg);
+    border-bottom: 1px solid var(--color-border);
+}
+
+nav {
+    width: min(1200px, 92%);
+    margin-inline: auto;
+    height: 64px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.5rem;
+}
+
+ul {
+    display: flex;
+    align-items: center;
+}
+
+.navigation-side ul {
+    gap: 1.5rem;
+    align-items: baseline;
+}
+
+.auth-side ul {
+    gap: 0.75rem;
+}
+
+a {
+    color: inherit;
+    text-decoration: none;
+    white-space: nowrap;
+}
+
+/* Logo */
+.logo {
+    font-size: 1.6rem;
+    font-weight: 700;
+    color: var(--color-primary);
+    transition: opacity var(--transition);
+}
+
+.logo:hover {
+    opacity: 0.8;
+}
+
+/* Menu: animated underline */
+.menu-link {
+    position: relative;
+    font-size: 0.95rem;
+    transition: color var(--transition);
+}
+
+.menu-link::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    height: 2px;
+    background: var(--color-primary);
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform var(--transition);
+}
+
+.menu-link:hover,
+.menu-link.active {
+    color: var(--color-primary);
+}
+
+.menu-link:hover::after,
+.menu-link.active::after {
+    transform: scaleX(1);
+}
+
+/* Login */
+.login {
+    display: inline-block;
+    padding: 0.6rem 1.1rem;
+    font-size: 0.95rem;
+    border-radius: var(--radius);
+    transition: background var(--transition), color var(--transition);
+}
+
+.login:hover {
+    background: var(--color-bg-alt);
+    color: var(--color-primary);
+}
+
+/* Sign Up */
+.signup {
+    display: inline-block;
+    padding: 0.6rem 1.2rem;
+    font-size: 0.95rem;
+    font-weight: 500;
+    color: #fff;
+    background: var(--color-primary);
+    border-radius: var(--radius);
+    transition: background var(--transition), transform var(--transition),
+        box-shadow var(--transition);
+}
+
+.signup:hover {
+    background: var(--color-primary-dark);
+    transform: translateY(-1px);
+    box-shadow: 0 4px 10px rgba(255, 107, 53, 0.35);
+}
+
+.signup:active {
+    transform: translateY(0);
+}
+
+/* Responsive */
+@media (max-width: 480px) {
+    nav {
+        height: 56px;
+    }
+
+    .navigation-side ul {
+        gap: 0.9rem;
+    }
+
+    .auth-side ul {
+        gap: 0.25rem;
+    }
+
+    .logo {
+        font-size: 1.3rem;
+    }
+
+    .menu-link {
+        font-size: 0.85rem;
+    }
+
+    .login,
+    .signup {
+        padding: 0.5rem 0.7rem;
+        font-size: 0.85rem;
+    }
+}

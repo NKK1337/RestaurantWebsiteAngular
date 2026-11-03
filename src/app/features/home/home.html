@@ -1,0 +1,36 @@
+<main>
+    <section class="hero">
+        <p>Delicious Food Delivered to Your Door</p>
+        <p>Fresh ingredients, authentic flavors, fast delivery</p>
+        <a routerLink="/menu">Order Now</a>
+    </section>
+    <section class="popular-dishes">
+        <div class="container">
+            <h2 class="section-title">Popular Dishes</h2>
+
+            <div class="dishes-grid">
+                @for (product of products(); track product.id) {
+                    <article class="dish-card">
+                        <img class="dish-image" [src]="product.image" [alt]="product.name" loading="lazy" />
+
+                        <div class="dish-body">
+                            <h3 class="dish-name">{{ product.name }}</h3>
+                            <p class="dish-description">{{ product.description }}</p>
+
+                            <span class="dish-rating">
+                                <span class="dish-star">★</span>
+                                {{ product.rate.toFixed(1) }}
+                            </span>
+
+                            <p class="dish-price">${{ product.price.toFixed(2) }}</p>
+
+                            <button class="dish-btn" type="button">
+                                Add to Cart
+                            </button>
+                        </div>
+                    </article>
+                }
+            </div>
+        </div>
+    </section>
+</main>

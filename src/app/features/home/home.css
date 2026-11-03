@@ -1,0 +1,216 @@
+/* ================= HERO ================= */
+.hero {
+    min-height: 70vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 2rem 1rem;
+    color: #fff;
+    background:
+        linear-gradient(rgba(0, 0, 0, 0.55), rgba(0, 0, 0, 0.55)),
+        url('/homeBackgorund.png') center / cover no-repeat;
+}
+
+/* Title (first p) */
+.hero p:first-child {
+    font-size: clamp(2rem, 6vw, 4rem);
+    font-weight: 700;
+    line-height: 1.15;
+    max-width: 900px;
+    margin-bottom: 1rem;
+}
+
+/* Subtitle (second p) */
+.hero p:nth-child(2) {
+    font-size: clamp(1rem, 2.5vw, 1.4rem);
+    max-width: 600px;
+    margin-bottom: 2rem;
+    opacity: 0.95;
+}
+
+/* Button */
+.hero a {
+    display: inline-block;
+    padding: 0.9rem 2.2rem;
+    font-size: 1.05rem;
+    font-weight: 600;
+    color: #fff;
+    background: var(--color-primary);
+    border-radius: var(--radius);
+    transition: background var(--transition), transform var(--transition),
+        box-shadow var(--transition);
+}
+
+.hero a:hover {
+    background: var(--color-primary-dark);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 16px rgba(255, 107, 53, 0.4);
+}
+
+.hero a:active {
+    transform: translateY(0);
+}
+
+/* ================= POPULAR DISHES ================= */
+.popular-dishes {
+    --dish-orange: #ff6b35;
+    --dish-orange-dark: #e85a28;
+    --dish-star: #f7931e;
+
+    padding: 3rem 0;
+    background: var(--color-bg);
+}
+
+/* Wider container only for this section (global .container stays 1200px) */
+.popular-dishes .container {
+    width: min(1500px, 92%);
+}
+
+.dishes-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.5rem;
+}
+
+.dish-card {
+    display: flex;
+    flex-direction: column;
+    background: #fff;
+    border: 1px solid #e5e5e5;
+    border-radius: 12px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+    overflow: hidden;
+    transition: transform var(--transition), box-shadow var(--transition);
+}
+
+.dish-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.12);
+}
+
+.dish-image {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+}
+
+.dish-body {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    padding: 1rem;
+    padding-top: 1.5rem;
+}
+
+.dish-name {
+    font-size: 1.1rem;
+    font-weight: 700;
+    line-height: 1.3;
+    margin-bottom: 0.5rem;
+}
+
+.dish-description {
+    font-size: 0.9rem;
+    line-height: 1.5;
+    color: var(--color-text-light);
+    margin-bottom: 0.6rem;
+}
+
+.dish-rating {
+    display: flex;
+    align-items: center;
+    gap: 0.35rem;
+    font-size: 0.9rem;
+    margin-bottom: 0.5rem;
+}
+
+.dish-star {
+    color: var(--dish-star);
+    font-size: 1.2rem;
+    line-height: 1;
+}
+
+.dish-price {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--dish-orange);
+    margin-bottom: 1.25rem;
+}
+
+.dish-btn {
+    margin-top: auto;
+    /* pushes button to the bottom so all cards align */
+    width: 100%;
+    padding: 0.6rem;
+    font-size: 0.9rem;
+    font-weight: 400;
+    line-height: 1.25;
+    color: #fff;
+    background: var(--dish-orange);
+    border-radius: 8px;
+    transition: background var(--transition), transform var(--transition);
+}
+
+.dish-btn:hover {
+    background: var(--dish-orange-dark);
+}
+
+.dish-btn:active {
+    transform: scale(0.98);
+}
+
+/* ================= RESPONSIVE ================= */
+@media (max-width: 1024px) {
+    .dishes-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 768px) {
+    .popular-dishes {
+        padding: 2.5rem 0;
+    }
+}
+
+@media (max-width: 640px) {
+    .dishes-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (max-width: 480px) {
+    .hero a {
+        padding: 0.8rem 1.6rem;
+        font-size: 1rem;
+    }
+
+    .popular-dishes .section-title {
+        font-size: 1.5rem;
+        margin-bottom: 1.25rem;
+    }
+
+    .dishes-grid {
+        gap: 1.25rem;
+    }
+
+    .dish-image {
+        height: 180px;
+    }
+}
+
+@media (max-width: 340px) {
+    .dish-body {
+        padding: 0.8rem;
+        padding-top: 1.2rem;
+    }
+
+    .dish-image {
+        height: 150px;
+    }
+
+    .dish-price {
+        font-size: 1.35rem;
+    }
+}
