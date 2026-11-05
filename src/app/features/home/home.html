@@ -7,29 +7,44 @@
     <section class="popular-dishes">
         <div class="container">
             <h2 class="section-title">Popular Dishes</h2>
-
             <div class="dishes-grid">
                 @for (product of products(); track product.id) {
-                    <article class="dish-card">
-                        <img class="dish-image" [src]="product.image" [alt]="product.name" loading="lazy" />
-
-                        <div class="dish-body">
-                            <h3 class="dish-name">{{ product.name }}</h3>
-                            <p class="dish-description">{{ product.description }}</p>
-
-                            <span class="dish-rating">
-                                <span class="dish-star">★</span>
-                                {{ product.rate.toFixed(1) }}
-                            </span>
-
-                            <p class="dish-price">${{ product.price.toFixed(2) }}</p>
-
-                            <button class="dish-btn" type="button">
-                                Add to Cart
-                            </button>
-                        </div>
-                    </article>
+                <article class="dish-card">
+                    <img class="dish-image" [src]="product.image" [alt]="product.name" loading="lazy" />
+                    <div class="dish-body">
+                        <h3 class="dish-name">{{ product.name }}</h3>
+                        <p class="dish-description">{{ product.description }}</p>
+                        <span class="dish-rating">
+                            <span class="dish-star">★</span>
+                            {{ product.rate.toFixed(1) }}
+                        </span>
+                        <p class="dish-price">${{ product.price.toFixed(2) }}</p>
+                        <button class="dish-btn" type="button">
+                            Add to Cart
+                        </button>
+                    </div>
+                </article>
                 }
+            </div>
+        </div>
+    </section>
+    <section class="our-description">
+        <div class="wrapper">
+            <div class="img-side">
+                <img src="/ResKitchen.jpg" alt="Chef cooking in the Foodie kitchen">
+            </div>
+            <div class="description-side">
+                <h2 class="story-title">Our Story</h2>
+                <p class="story-text">
+                    At Foodie, we believe that great food brings people together. Our chefs use only the freshest
+                    ingredients to create dishes that delight your taste buds and warm your heart.
+                </p>
+                <p class="story-text">
+                    From traditional recipes passed down through generations to innovative modern cuisine, every dish is
+                    crafted with passion and care. We're committed to delivering not just meals, but memorable dining
+                    experiences right to your door.
+                </p>
+                <a routerLink="/menu" class="menu-btn">Explore Our Menu</a>
             </div>
         </div>
     </section>
