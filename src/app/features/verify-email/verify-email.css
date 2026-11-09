@@ -1,0 +1,157 @@
+.verify-page {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 24px 16px;
+    background: #fff;
+}
+
+.verify-card {
+    width: 100%;
+    max-width: 448px;
+    padding: 28px 24px;
+    background: #fff;
+    border: 1px solid #e5e5e5;
+    border-radius: 16px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+}
+
+.verify-title {
+    margin: 0 0 8px;
+    text-align: center;
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: #000;
+}
+
+.verify-subtitle {
+    margin: 0 0 24px;
+    text-align: center;
+    font-size: 0.875rem;
+    color: #666;
+}
+
+.verify-subtitle strong {
+    color: #555;
+    font-weight: 700;
+    word-break: break-all;
+}
+
+.verify-form {
+    display: flex;
+    flex-direction: column;
+}
+
+.verify-form label {
+    margin-bottom: 8px;
+    font-size: 0.875rem;
+    font-weight: 700;
+    color: #000;
+}
+
+.verify-form input {
+    width: 100%;
+    box-sizing: border-box;
+    padding: 10px 12px;
+    font-size: 0.875rem;
+    color: #222;
+    background: #f5f5f5;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    outline: none;
+    transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+.verify-form input::placeholder {
+    color: #777;
+}
+
+.verify-form input:focus {
+    border-color: #ff5a2c;
+    box-shadow: 0 0 0 3px rgba(255, 90, 44, 0.15);
+}
+
+.field-error,
+.server-error {
+    margin: 8px 0 0;
+    font-size: 0.8125rem;
+    color: #dc2626;
+}
+
+.success-message {
+    margin: 8px 0 0;
+    font-size: 0.8125rem;
+    color: #15803d;
+}
+
+.verify-btn {
+    margin-top: 16px;
+    width: 100%;
+    padding: 10px 12px;
+    font-size: 0.875rem;
+    font-weight: 500;
+    color: #fff;
+    background: #ff5a2c;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background 0.2s, opacity 0.2s;
+}
+
+.verify-btn:hover:not(:disabled) {
+    background: #e84e22;
+}
+
+.verify-btn:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+.verify-btn-link {
+    display: block;
+    box-sizing: border-box;
+    text-align: center;
+    text-decoration: none;
+}
+
+.resend-row {
+    margin-top: 24px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    font-size: 0.875rem;
+    color: #555;
+}
+
+.resend-btn {
+    padding: 0;
+    font: inherit;
+    font-weight: 700;
+    color: #ff5a2c;
+    background: none;
+    border: none;
+    cursor: pointer;
+}
+
+.resend-btn:hover:not(:disabled) {
+    text-decoration: underline;
+}
+
+.resend-btn:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+}
+
+.back-link {
+    display: block;
+    margin-top: 24px;
+    text-align: center;
+    font-size: 0.875rem;
+    color: #ff5a2c;
+    text-decoration: none;
+}
+
+.back-link:hover {
+    text-decoration: underline;
+}

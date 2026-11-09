@@ -1,0 +1,228 @@
+:host {
+    display: block;
+}
+
+.auth-page {
+    --auth-orange: #ff6b35;
+    --auth-orange-dark: #e85a26;
+    --auth-border: #e5e5e5;
+    --auth-input-bg: #f7f7f7;
+    --auth-text: #111;
+    --auth-muted: #666;
+    --auth-error: #d93025;
+    --auth-success: #1e8e3e;
+
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 24px 16px;
+    box-sizing: border-box;
+}
+
+.auth-card {
+    width: 100%;
+    max-width: 448px;
+    box-sizing: border-box;
+    padding: 24px;
+    background: #fff;
+    border: 1px solid var(--auth-border);
+    border-radius: 16px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+}
+
+.auth-title {
+    margin: 0;
+    text-align: center;
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--auth-text);
+}
+
+.auth-subtitle {
+    margin: 8px 0 24px;
+    text-align: center;
+    font-size: 0.9rem;
+    color: var(--auth-muted);
+}
+
+.auth-form {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.form-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+}
+
+.field {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    min-width: 0;
+}
+
+.field label {
+    font-size: 0.9rem;
+    color: var(--auth-text);
+}
+
+.field input {
+    width: 100%;
+    box-sizing: border-box;
+    height: 36px;
+    padding: 0 12px;
+    font-size: 0.9rem;
+    color: var(--auth-text);
+    background: var(--auth-input-bg);
+    border: 1px solid var(--auth-border);
+    border-radius: 8px;
+    outline: none;
+    transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+.field input::placeholder {
+    color: #888;
+}
+
+.field input:focus {
+    border-color: var(--auth-orange);
+    box-shadow: 0 0 0 3px rgba(255, 107, 53, 0.2);
+}
+
+.field input.ng-touched.ng-invalid {
+    border-color: var(--auth-error);
+}
+
+.password-wrapper {
+    position: relative;
+}
+
+.password-wrapper input {
+    padding-right: 40px;
+}
+
+.toggle-password {
+    position: absolute;
+    top: 0;
+    right: 0;
+    height: 36px;
+    width: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0;
+    color: var(--auth-text);
+    background: transparent;
+    border: none;
+    cursor: pointer;
+}
+
+.password-hints {
+    margin: 4px 0 0;
+    padding: 0;
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    font-size: 0.75rem;
+    color: var(--auth-muted);
+}
+
+.password-hints li::before {
+    content: '•';
+    margin-right: 4px;
+}
+
+.password-hints li.met {
+    color: var(--auth-success);
+}
+
+.password-hints li.met::before {
+    content: '✓';
+}
+
+.field-error,
+.server-error {
+    margin: 0;
+    font-size: 0.8rem;
+    color: var(--auth-error);
+}
+
+.server-error {
+    text-align: center;
+}
+
+.submit-btn {
+    height: 36px;
+    font-size: 0.9rem;
+    font-weight: 500;
+    color: #fff;
+    background: var(--auth-orange);
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background 0.2s;
+}
+
+.submit-btn:hover:not(:disabled) {
+    background: var(--auth-orange-dark);
+}
+
+.submit-btn:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+}
+
+.switch-text {
+    margin: 24px 0 0;
+    text-align: center;
+    font-size: 0.9rem;
+    color: var(--auth-muted);
+}
+
+.switch-text a {
+    color: var(--auth-orange);
+    text-decoration: none;
+}
+
+.switch-text a:hover {
+    text-decoration: underline;
+}
+
+/* Tablets and small phones */
+@media (max-width: 480px) {
+    .auth-card {
+        padding: 20px 16px;
+        border-radius: 12px;
+    }
+
+    .form-row {
+        grid-template-columns: 1fr;
+    }
+
+    .field input,
+    .toggle-password,
+    .submit-btn {
+        height: 42px;
+    }
+
+    /* 16px stops iOS from zooming into the input */
+    .field input {
+        font-size: 1rem;
+    }
+}
+
+/* Very small phones (down to 321px) */
+@media (max-width: 360px) {
+    .auth-page {
+        padding: 16px 12px;
+    }
+
+    .auth-title {
+        font-size: 1.3rem;
+    }
+}

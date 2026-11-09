@@ -1,0 +1,80 @@
+<section class="auth-page">
+    <div class="auth-card">
+        <h1 class="auth-title">Create Account</h1>
+        <p class="auth-subtitle">Join us today</p>
+
+        <form class="auth-form" [formGroup]="form" (ngSubmit)="onSubmit()" novalidate>
+            <div class="form-row">
+                <div class="field">
+                    <label for="firstName">First Name</label>
+                    <input id="firstName" type="text" formControlName="firstName" placeholder="John"
+                        autocomplete="given-name" />
+                    @if (form.controls.firstName.touched && form.controls.firstName.invalid) {
+                    <p class="field-error">Enter a valid first name.</p>
+                    }
+                </div>
+
+                <div class="field">
+                    <label for="lastName">Last Name</label>
+                    <input id="lastName" type="text" formControlName="lastName" placeholder="Doe"
+                        autocomplete="family-name" />
+                    @if (form.controls.lastName.touched && form.controls.lastName.invalid) {
+                    <p class="field-error">Enter a valid last name.</p>
+                    }
+                </div>
+            </div>
+
+            <div class="field">
+                <label for="email">Email</label>
+                <input id="email" type="email" formControlName="email" placeholder="you@example.com"
+                    autocomplete="email" />
+                @if (form.controls.email.touched && form.controls.email.invalid) {
+                <p class="field-error">Enter a valid email address.</p>
+                }
+            </div>
+
+            <div class="field">
+                <label for="password">Password</label>
+                <div class="password-wrapper">
+                    <input id="password" [type]="showPassword() ? 'text' : 'password'" formControlName="password"
+                        placeholder="••••••••" autocomplete="new-password" />
+                    <button type="button" class="toggle-password" (click)="togglePassword()"
+                        [attr.aria-label]="showPassword() ? 'Hide password' : 'Show password'">
+                        @if (showPassword()) {
+                        <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor"
+                            stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                            <path
+                                d="M17.94 17.94A10.07 10.07 0 0 1 12 20c-7 0-11-8-11-8a18.45 18.45 0 0 1 5.06-5.94M9.9 4.24A9.12 9.12 0 0 1 12 4c7 0 11 8 11 8a18.5 18.5 0 0 1-2.16 3.19m-6.72-1.07a3 3 0 1 1-4.24-4.24" />
+                            <line x1="1" y1="1" x2="23" y2="23" />
+                        </svg>
+                        } @else {
+                        <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor"
+                            stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                            <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z" />
+                            <circle cx="12" cy="12" r="3" />
+                        </svg>
+                        }
+                    </button>
+                </div>
+
+                <ul class="password-hints">
+                    <li [class.met]="hasMinLength">At least 8 characters</li>
+                    <li [class.met]="hasUpperAndLower">Uppercase and lowercase letters</li>
+                    <li [class.met]="hasNumber">At least one number</li>
+                </ul>
+            </div>
+
+            @if (errorMessage()) {
+            <p class="server-error">{{ errorMessage() }}</p>
+            }
+
+            <button type="submit" class="submit-btn" [disabled]="loading()">
+                {{ loading() ? 'Creating account...' : 'Create Account' }}
+            </button>
+        </form>
+
+        <p class="switch-text">
+            Already have an account? <a routerLink="/signin">Sign in</a>
+        </p>
+    </div>
+</section>

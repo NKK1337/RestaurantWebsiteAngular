@@ -1,5 +1,5 @@
-import { Component, signal } from '@angular/core';
-import { RouterOutlet } from '@angular/router';
+import { Component, inject, signal } from '@angular/core';
+import { Router, RouterOutlet } from '@angular/router';
 import { Header } from './core/layout/header/header';
 import { Footer } from './core/layout/footer/footer';
 
@@ -10,5 +10,12 @@ import { Footer } from './core/layout/footer/footer';
   templateUrl: './app.html',
 })
 export class App {
+  private router = inject(Router)
 
+  private hiddenLayoutRoutes = ['/signin', '/signup', '/verifyemail', '/forgot-password'];
+
+  get hideLayout(): boolean {
+    const url = this.router.url.split('?')[0];
+    return this.hiddenLayoutRoutes.includes(url);
+  }
 }

@@ -1,0 +1,51 @@
+<section class="verify-page">
+    <div class="verify-card">
+        <h1 class="verify-title">Verify Your Email</h1>
+
+        @if (email) {
+        <p class="verify-subtitle">
+            We sent a 6-digit code to <strong>{{ email }}</strong>
+        </p>
+
+        <form class="verify-form" [formGroup]="form" (ngSubmit)="onSubmit()" novalidate>
+            <label for="code">Verification Code</label>
+            <input id="code" type="text" formControlName="code" placeholder="Enter 6-digit code" maxlength="6"
+                inputmode="numeric" autocomplete="one-time-code" (input)="onCodeInput($event)" />
+
+            @if (form.controls.code.touched && form.controls.code.invalid) {
+            <p class="field-error">Enter the 6-digit code from your email.</p>
+            }
+
+            @if (resent()) {
+            <p class="success-message">A new code was sent to your email.</p>
+            }
+
+            @if (errorMessage()) {
+            <p class="server-error">{{ errorMessage() }}</p>
+            }
+
+            <button type="submit" class="verify-btn" [disabled]="form.invalid || loading()">
+                {{ loading() ? 'Verifying...' : 'Verify' }}
+            </button>
+        </form>
+
+        <div class="resend-row">
+            <span>Didn't receive the code?</span>
+            <button type="button" class="resend-btn" (click)="resend()" [disabled]="resending() || cooldown() > 0">
+                @if (resending()) {
+                Sending...
+                } @else if (cooldown() > 0) {
+                Resend in {{ cooldown() }}s
+                } @else {
+                Resend Code
+                }
+            </button>
+        </div>
+        } @else {
+        <p class="verify-subtitle">We couldn't find your email address. Please sign up again.</p>
+        <a class="verify-btn verify-btn-link" routerLink="/signup">Back to Sign Up</a>
+        }
+
+        <a class="back-link" routerLink="/signin">Back to Login</a>
+    </div>
+</section>
