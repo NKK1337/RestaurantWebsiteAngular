@@ -1,59 +1,51 @@
-# 32ProjectAngular
+# [Step Restaurant]
 
-This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 22.2.2.
+A restaurant website I built for school and as part of my portfolio. It has a frontend for visitors and a backend API that handles accounts, dishes, and the rest of the data.
 
-## Development server
+![Home page](docs/screenshot-home.png)
 
-To start a local development server, run:
+## Built with
 
-```bash
-ng serve
-```
+- Frontend: [your frontend]
+- Backend: [your backend]
+- Database: [your database]
 
-Once the server is running, open your browser and navigate to `http://localhost:4200/`. The application will automatically reload whenever you modify any of the source files.
+## Running it locally
 
-## Code scaffolding
-
-Angular CLI includes powerful code scaffolding tools. To generate a new component, run:
+You need [Node / JDK / .NET, whichever you use] and [your database] installed.
 
 ```bash
-ng generate component component-name
+git clone https://github.com/NKK1337/[repo-name].git
+cd [repo-name]
+[install command]
 ```
 
-For a complete list of available schematics (such as `components`, `directives`, or `pipes`), run:
+Copy `.env.example` to `.env` and put in your own values (database connection, JWT secret, etc.). Then:
 
 ```bash
-ng generate --help
+[start command]
 ```
 
-## Building
+It runs on `http://localhost:[port]`.
 
-To build the project run:
+## API
 
-```bash
-ng build
+The backend is a REST API. Every endpoint returns the same `ApiResponse` shape:
+
+```json
+{
+  "success": true,
+  "message": "Some message",
+  "data": {}
+}
 ```
 
-This will compile your project and store the build artifacts in the `dist/` directory. By default, the production build optimizes your application for performance and speed.
+You can find all the endpoints in the [controllers/routes folder](backend/).
 
-## Running unit tests
+Endpoints that need a logged-in user expect a token in the `Authorization` header.
 
-To execute unit tests with the [Vitest](https://vitest.dev/) test runner, use the following command:
+## Notes
 
-```bash
-ng test
-```
+This is a school project that I keep working on, so things change as I add more. If you find a bug, feel free to open an issue.
 
-## Running end-to-end tests
-
-For end-to-end (e2e) testing, run:
-
-```bash
-ng e2e
-```
-
-Angular CLI does not come with an end-to-end testing framework by default. You can choose one that suits your needs.
-
-## Additional Resources
-
-For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+Made by [NKK1337](https://github.com/NKK1337).
