@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { inject, Service } from '@angular/core';
-import { APIResponse, ProductsData } from '../../shared/models/product';
+import { ProductsData } from '../../shared/models/product';
+import { ApiResponse } from '../../shared/models/api-response';
 
 @Service()
 export class RestaurantService {
@@ -8,7 +9,7 @@ export class RestaurantService {
     private baseUrl = "https://restaurantapi.stepacademy.ge/api";
 
     getProducts(take: number, page: number) {
-        return this.http.get<APIResponse<ProductsData>>(
+        return this.http.get<ApiResponse<ProductsData>>(
             `${this.baseUrl}/products?Take=${take}&Page=${page}`
         )
     }

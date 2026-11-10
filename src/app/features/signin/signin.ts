@@ -41,9 +41,6 @@ export class Signin {
 
     this.service.signin(this.form.getRawValue()).subscribe({
       next: (res) => {
-        console.log('isVerified:', res.isVerified, typeof res.isVerified);
-        console.log('keys:', Object.keys(res));
-        console.log('full:', JSON.stringify(res));
         this.loading.set(false);
 
         if (res.isVerified) {

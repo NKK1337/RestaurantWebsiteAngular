@@ -1,7 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { computed, inject, Service, signal } from '@angular/core';
 import {
-    ApiResponse,
     ResendVerificationResponse,
     ResetPasswordRequest,
     SigninRequest,
@@ -11,6 +10,7 @@ import {
     VerifyEmailRequest,
 } from '../../shared/models/auth';
 import { map, tap, throwError } from 'rxjs';
+import { ApiResponse } from '../../shared/models/api-response';
 
 @Service()
 export class AuthService {

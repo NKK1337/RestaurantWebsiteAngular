@@ -13,16 +13,3 @@ export interface Product {
 export interface ProductsData {
     products: Product[];
 }
-
-export interface Meta {
-    name: string;
-    description: string;
-    website: string;
-    location: string;
-    email: string;
-}
-
-export interface APIResponse<T> {
-    data: T;
-    meta?: Meta;
-}

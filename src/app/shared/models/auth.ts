@@ -1,14 +1,3 @@
-export interface ApiResponse<T> {
-    data: T;
-    meta?: {
-        name: string;
-        description: string;
-        website: string;
-        location: string;
-        email: string;
-    };
-}
-
 export interface SignupRequest {
     firstName: string;
     lastName: string;

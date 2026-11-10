@@ -1,14 +1,3 @@
-export interface ApiResponse<T> {
-    data: T;
-    meta?: {
-        name: string;
-        description: string;
-        website: string;
-        location: string;
-        email: string;
-    };
-}
-
 // GET /api/users/profile 
 export interface Profile {
     id: number;
