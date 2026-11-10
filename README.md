@@ -1,36 +1,34 @@
-# [Step Restaurant]
+# [Restaurant Name]
 
-A restaurant website I built for school and as part of my portfolio. It has a frontend for visitors and a backend API that handles accounts, dishes, and the rest of the data.
+A restaurant website I built for school and as part of my portfolio. This is the Angular frontend. It talks to a REST API for accounts, dishes, and the rest of the data.
 
 ![Home page](docs/screenshot-home.png)
 
 ## Built with
 
-- Frontend: [your frontend]
-- Backend: [your backend]
-- Database: [your database]
+- Angular
+- TypeScript
+- [Backend, e.g. Spring Boot / ASP.NET Core / Node.js]
+- [Database]
 
 ## Running it locally
 
-You need [Node / JDK / .NET, whichever you use] and [your database] installed.
+You need Node.js and the Angular CLI installed.
 
 ```bash
 git clone https://github.com/NKK1337/[repo-name].git
 cd [repo-name]
-[install command]
+npm install
+ng serve
 ```
 
-Copy `.env.example` to `.env` and put in your own values (database connection, JWT secret, etc.). Then:
+Then open `http://localhost:4200`.
 
-```bash
-[start command]
-```
-
-It runs on `http://localhost:[port]`.
+The app expects the API to be running. Set the API URL in `src/app/app.config.ts` or your environment file.
 
 ## API
 
-The backend is a REST API. Every endpoint returns the same `ApiResponse` shape:
+Every endpoint returns the same `ApiResponse` shape:
 
 ```json
 {
@@ -39,8 +37,6 @@ The backend is a REST API. Every endpoint returns the same `ApiResponse` shape:
   "data": {}
 }
 ```
-
-You can find all the endpoints in the [controllers/routes folder](backend/).
 
 Endpoints that need a logged-in user expect a token in the `Authorization` header.
 
