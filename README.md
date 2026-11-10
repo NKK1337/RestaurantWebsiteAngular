@@ -1,4 +1,4 @@
-# [Restaurant Name]
+# [CHEMI RESTORANI AI ESE]
 
 A restaurant website I built for school and as part of my portfolio. This is the Angular frontend. It talks to a REST API for accounts, dishes, and the rest of the data.
 
