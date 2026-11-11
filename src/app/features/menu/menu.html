@@ -1,0 +1,112 @@
+<section class="menu-page">
+    <div class="backdrop" [class.show]="filtersOpen()" (click)="closeFilters()"></div>
+
+    <aside class="filters" [class.open]="filtersOpen()">
+        <div class="filters-head">
+            <h2 class="filters-title">Filters</h2>
+            <button class="close-btn" type="button" aria-label="Close filters" (click)="closeFilters()">✕</button>
+        </div>
+
+        <div class="filter-group">
+            <label class="filter-label" for="search">Search</label>
+            <input id="search" class="search-input" type="text" placeholder="Search dishes..." [value]="search()"
+                (input)="onSearch($event)" />
+        </div>
+
+        <div class="filter-group">
+            <span class="filter-label">Categories</span>
+            @for (category of categories(); track category.id) {
+            <label class="check">
+                <input type="checkbox" [checked]="categoryId() === category.id" (change)="onCategory(category.id)" />
+                <span>{{ category.name }}</span>
+            </label>
+            }
+        </div>
+
+        <div class="filter-group row">
+            <span class="filter-label">Vegetarian Only</span>
+            <label class="switch">
+                <input type="checkbox" [checked]="vegetarianOnly()" (change)="onVegetarian($event)" />
+                <span class="switch-slider"></span>
+            </label>
+        </div>
+
+        <div class="filter-group">
+            <span class="filter-label">Spiciness (0-5)</span>
+            <input class="range" type="range" min="0" max="5" step="1" [value]="spiciness()"
+                [style.--fill]="spiciness() * 20 + '%'" (input)="onSpiciness($event)" />
+            <span class="hint">Level: {{ spiciness() > 0 ? spiciness() : 'not selected' }}</span>
+        </div>
+
+        <div class="filter-group">
+            <span class="filter-label">Minimum Rating</span>
+            <input class="range" type="range" min="0" max="5" step="0.5" [value]="minRating()"
+                [style.--fill]="minRating() * 20 + '%'" (input)="onRating($event)" />
+            <span class="hint"><span class="star">★</span> {{ minRating().toFixed(1) }}+</span>
+        </div>
+
+        <div class="filter-group">
+            <span class="filter-label">Min price</span>
+            <input class="range" type="range" min="0" [max]="maxPrice" step="1" [value]="minPrice()"
+                [style.--fill]="(minPrice() / maxPrice) * 100 + '%'" (input)="onMinPrice($event)" />
+            <span class="hint">$ {{ minPrice() }}+</span>
+        </div>
+
+        <div class="filter-group">
+            <span class="filter-label">Max price</span>
+            <input class="range" type="range" min="0" [max]="maxPrice" step="1" [value]="maxPriceValue()"
+                [style.--fill]="(maxPriceValue() / maxPrice) * 100 + '%'" (input)="onMaxPrice($event)" />
+            <span class="hint">{{ maxPriceValue() > 0 ? '$ ' + maxPriceValue() : 'Any' }}</span>
+        </div>
+
+        <button class="clear-btn" type="button" (click)="clearFilters()">Clear All Filters</button>
+    </aside>
+
+    <div class="content">
+        <div class="menu-header">
+            <h1 class="menu-title">Menu</h1>
+            <button class="filter-toggle" type="button" aria-label="Open filters" (click)="toggleFilters()">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                    stroke-linecap="round" stroke-linejoin="round">
+                    <polygon points="22 3 2 3 10 12.46 10 19 14 21 14 12.46 22 3"></polygon>
+                </svg>
+            </button>
+        </div>
+
+        @if (loading()) {
+        <p class="state">Loading dishes...</p>
+        } @else if (products().length === 0) {
+        <div class="state">
+            <h3>No Dishes Found</h3>
+            <p>Try changing or clearing your filters.</p>
+        </div>
+        } @else {
+        <div class="dishes-grid">
+            @for (product of products(); track product.id) {
+            <article class="dish-card">
+                <img class="dish-image" [src]="product.image" [alt]="product.name" loading="lazy" />
+                <div class="dish-body">
+                    <h3 class="dish-name">{{ product.name }}</h3>
+                    <p class="dish-description">{{ product.description }}</p>
+                    <span class="dish-rating">
+                        <span class="dish-star">★</span>
+                        {{ product.rate.toFixed(1) }}
+                    </span>
+                    <p class="dish-price">${{ product.price.toFixed(2) }}</p>
+                    <button class="dish-btn" type="button">Add to Cart</button>
+                </div>
+            </article>
+            }
+        </div>
+
+        <nav class="pagination">
+            @if (page() > 1) {
+            <button type="button" (click)="prevPage()">‹ Previous</button>
+            }
+            @if (hasMore()) {
+            <button type="button" (click)="nextPage()">Next ›</button>
+            }
+        </nav>
+        }
+    </div>
+</section>

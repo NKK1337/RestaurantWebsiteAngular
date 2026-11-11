@@ -5,6 +5,7 @@ import { Signup } from './features/signup/signup';
 import { VerifyEmail } from './features/verify-email/verify-email';
 import { ForgotPassword } from './features/forgot-password/forgot-password';
 import { Profile } from './features/profile/profile';
+import { Menu } from './features/menu/menu';
 
 export const routes: Routes = [
     { path: '', component: Home },
@@ -12,5 +13,6 @@ export const routes: Routes = [
     { path: 'signup', component: Signup },
     { path: 'verifyemail', component: VerifyEmail },
     { path: 'forgot-password', component: ForgotPassword },
-    { path: 'profile', component: Profile }
+    { path: 'profile', component: Profile },
+    { path: 'menu', component: Menu}
 ];
