@@ -10,7 +10,7 @@
     color: #fff;
     background:
         linear-gradient(rgba(0, 0, 0, 0.55), rgba(0, 0, 0, 0.55)),
-        url('./homeBackgorund.png') center / cover no-repeat;
+        url('../../../../public/homeBackgorund.png') center / cover no-repeat;
 }
 
 /* Title (first p) */
