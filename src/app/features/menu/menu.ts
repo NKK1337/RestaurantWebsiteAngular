@@ -1,6 +1,6 @@
 import { Component, computed, inject, signal, WritableSignal } from '@angular/core';
 import { toObservable, toSignal } from '@angular/core/rxjs-interop';
-import { Router } from '@angular/router';
+import { Router, RouterLink } from '@angular/router';
 import { catchError, debounceTime, map, of, switchMap, tap } from 'rxjs';
 import { MenufilterService } from './menufilter-service';
 import { CartService } from '../../core/services/cart-service';
@@ -8,7 +8,7 @@ import { AuthService } from '../../core/services/auth-service';
 import { Category, Product, ProductFilterParams } from './menu.model';
 
 @Component({
-  imports: [],
+  imports: [RouterLink],
   selector: 'app-menu',
   styleUrl: './menu.css',
   templateUrl: './menu.html',
@@ -34,7 +34,6 @@ export class Menu {
 
   filtersOpen = signal(false);
 
-  // cart button state
   addingId = signal<number | null>(null);
   addedId = signal<number | null>(null);
 

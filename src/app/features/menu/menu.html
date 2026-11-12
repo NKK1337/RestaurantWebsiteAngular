@@ -84,9 +84,13 @@
         <div class="dishes-grid">
             @for (product of products(); track product.id) {
             <article class="dish-card">
-                <img class="dish-image" [src]="product.image" [alt]="product.name" loading="lazy" />
+                <a class="dish-link" routerLink="/product" [queryParams]="{ id: product.id }">
+                    <img class="dish-image" [src]="product.image" [alt]="product.name" loading="lazy" />
+                </a>
                 <div class="dish-body">
-                    <h3 class="dish-name">{{ product.name }}</h3>
+                    <a class="dish-link" routerLink="/product" [queryParams]="{ id: product.id }">
+                        <h3 class="dish-name">{{ product.name }}</h3>
+                    </a>
                     <p class="dish-description">{{ product.description }}</p>
                     <span class="dish-rating">
                         <span class="dish-star">★</span>

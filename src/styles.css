@@ -211,3 +211,9 @@ button {
     margin-bottom: 2rem;
     text-align: center;
 }
+
+.dish-link {
+    color: inherit;
+    text-decoration: none;
+    display: block;
+}

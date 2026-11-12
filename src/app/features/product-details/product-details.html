@@ -1,0 +1,86 @@
+<section class="product-page">
+    @if (loading()) {
+    <p class="state">Loading dish...</p>
+    } @else if (!product()) {
+    <div class="state">
+        <h3>Dish not found</h3>
+        <a class="back-link" routerLink="/menu">Back to menu</a>
+    </div>
+    } @else {
+    @let p = product()!;
+
+    <div class="product-top">
+        <img class="product-image" [src]="p.image" [alt]="p.name" />
+
+        <div class="product-info">
+            <h1 class="product-name">{{ p.name }}</h1>
+
+            <div class="product-rating">
+                @for (filled of stars(); track $index) {
+                <span class="star" [class.filled]="filled">★</span>
+                }
+                <span class="rating-text">({{ p.rate.toFixed(1) }} rating)</span>
+            </div>
+
+            <p class="product-price">${{ p.price.toFixed(2) }}</p>
+
+            @if (p.vegetarian) {
+            <span class="veg-badge">
+                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                    stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M11 20A7 7 0 0 1 9.8 6.1C15.5 5 17 4.48 19 2c1 2 2 4.18 2 8 0 5.5-4.78 10-10 10Z"></path>
+                    <path d="M2 21c0-3 1.85-5.36 5.08-6C9.5 14.52 12 13 13 12"></path>
+                </svg>
+                Vegetarian
+            </span>
+            }
+
+            <p class="product-description">{{ p.description }}</p>
+
+            <h2 class="info-title">Ingredients:</h2>
+            <ul class="ingredients">
+                @for (item of p.ingredients; track $index) {
+                <li>{{ item }}</li>
+                }
+            </ul>
+
+            <h2 class="info-title">Preparation Method:</h2>
+            <p class="method">{{ p.method }}</p>
+
+            <div class="qty">
+                <button type="button" aria-label="Decrease quantity" (click)="decrease()">−</button>
+                <span class="qty-value">{{ quantity() }}</span>
+                <button type="button" aria-label="Increase quantity" (click)="increase()">+</button>
+            </div>
+
+            <button class="add-btn" type="button" [disabled]="addingId() === p.id"
+                (click)="addToCart(p.id, quantity())">
+                {{ addedId() === p.id ? 'Added ✓' : 'Add to Cart' }}
+            </button>
+        </div>
+    </div>
+
+    @if (related().length > 0) {
+    <h2 class="related-title">You May Also Like</h2>
+    <div class="related-grid">
+        @for (item of related(); track item.id) {
+        <article class="related-card">
+            <a class="card-link" routerLink="/product" [queryParams]="{ id: item.id }">
+                <img class="related-image" [src]="item.image" [alt]="item.name" loading="lazy" />
+                <h3 class="related-name">{{ item.name }}</h3>
+            </a>
+            <div class="related-body">
+                <p class="related-description">{{ item.description }}</p>
+                <span class="related-rating"><span class="star filled">★</span> {{ item.rate.toFixed(1) }}</span>
+                <p class="related-price">${{ item.price.toFixed(2) }}</p>
+                <button class="related-btn" type="button" [disabled]="addingId() === item.id"
+                    (click)="addToCart(item.id, 1)">
+                    {{ addedId() === item.id ? 'Added ✓' : 'Add to Cart' }}
+                </button>
+            </div>
+        </article>
+        }
+    </div>
+    }
+    }
+</section>
