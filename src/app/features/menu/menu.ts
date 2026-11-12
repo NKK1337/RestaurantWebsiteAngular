@@ -1,8 +1,11 @@
 import { Component, computed, inject, signal, WritableSignal } from '@angular/core';
 import { toObservable, toSignal } from '@angular/core/rxjs-interop';
+import { Router } from '@angular/router';
 import { catchError, debounceTime, map, of, switchMap, tap } from 'rxjs';
 import { MenufilterService } from './menufilter-service';
-import { Category, ProductFilterParams } from './menu.model';
+import { CartService } from '../../core/services/cart-service';
+import { AuthService } from '../../core/services/auth-service';
+import { Category, Product, ProductFilterParams } from './menu.model';
 
 @Component({
   imports: [],
@@ -12,6 +15,9 @@ import { Category, ProductFilterParams } from './menu.model';
 })
 export class Menu {
   private menuService = inject(MenufilterService);
+  private cartService = inject(CartService);
+  private auth = inject(AuthService);
+  private router = inject(Router);
 
   readonly pageSize = 10;
   readonly maxPrice = 100;
@@ -27,6 +33,10 @@ export class Menu {
   loading = signal(true);
 
   filtersOpen = signal(false);
+
+  // cart button state
+  addingId = signal<number | null>(null);
+  addedId = signal<number | null>(null);
 
   toggleFilters() {
     this.filtersOpen.update((open) => !open);
@@ -70,6 +80,24 @@ export class Menu {
 
   products = computed(() => this.response()?.data.products ?? []);
   hasMore = computed(() => this.response()?.data.hasMore ?? false);
+
+  addToCart(product: Product) {
+    if (!this.auth.isLoggedIn()) {
+      this.router.navigate(['/signin']);
+      return;
+    }
+
+    this.addingId.set(product.id);
+
+    this.cartService.addToCart({ productId: product.id, quantity: 1 }).subscribe({
+      next: () => {
+        this.addingId.set(null);
+        this.addedId.set(product.id);
+        setTimeout(() => this.addedId.set(null), 1500);
+      },
+      error: () => this.addingId.set(null),
+    });
+  }
 
   private setFilter<T>(state: WritableSignal<T>, value: T) {
     state.set(value);

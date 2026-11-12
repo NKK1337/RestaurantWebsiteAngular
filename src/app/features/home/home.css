@@ -218,6 +218,11 @@
     margin-bottom: 1.25rem;
 }
 
+.dish-btn:disabled {
+    opacity: 0.7;
+    cursor: default;
+}
+
 .dish-btn {
     margin-top: auto;
     /* pushes button to the bottom so all cards align */

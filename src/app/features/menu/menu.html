@@ -93,7 +93,10 @@
                         {{ product.rate.toFixed(1) }}
                     </span>
                     <p class="dish-price">${{ product.price.toFixed(2) }}</p>
-                    <button class="dish-btn" type="button">Add to Cart</button>
+                    <button class="dish-btn" type="button" [disabled]="addingId() === product.id"
+                        (click)="addToCart(product)">
+                        {{ addedId() === product.id ? 'Added ✓' : 'Add to Cart' }}
+                    </button>
                 </div>
             </article>
             }

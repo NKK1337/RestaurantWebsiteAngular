@@ -1,6 +1,7 @@
-import { Component, ElementRef, HostListener, inject, signal } from '@angular/core';
+import { Component, effect, ElementRef, HostListener, inject, signal, untracked } from '@angular/core';
 import { Router, RouterLink, RouterLinkActive } from '@angular/router';
 import { AuthService } from '../../services/auth-service';
+import { CartService } from '../../services/cart-service';
 
 @Component({
   imports: [RouterLink, RouterLinkActive],
@@ -10,10 +11,25 @@ import { AuthService } from '../../services/auth-service';
 })
 export class Header {
   public auth = inject(AuthService);
+  public cartService = inject(CartService);
   private router = inject(Router);
   private host = inject(ElementRef);
 
   public menuOpen = signal(false);
+
+  constructor() {
+    effect(() => {
+      const loggedIn = this.auth.isLoggedIn();
+
+      untracked(() => {
+        if (loggedIn) {
+          this.cartService.refresh();
+        } else {
+          this.cartService.clear();
+        }
+      });
+    });
+  }
 
   toggleMenu() {
     this.menuOpen.update((value) => !value);
